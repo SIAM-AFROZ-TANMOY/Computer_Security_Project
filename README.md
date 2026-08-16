@@ -456,20 +456,6 @@ As implementation and experimental results are added, corresponding sections can
 
 ---
 
-# My Name % ID
-
-<table>
-<tr>
-<th>Name</th>
-<th>Student ID</th>
-</tr>
-
-<tr>
-<td><b>Md. Siam Afroz Tanmoy</b></td>
-<td>0112230123</td>
-</tr>
-
-
 
 ---
 
