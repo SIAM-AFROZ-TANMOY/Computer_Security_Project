@@ -3,7 +3,7 @@
 ### Multimodal AI-Based Phishing Detection System
 
 <p align="center">
-  <b>Detect phishing using URL intelligence + visual webpage analysis.</b>
+  <b>Detect phishing using URL intelligence + visual webpage analysis.</b> 
 </p>
 
 <p align="center">
