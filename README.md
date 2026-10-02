@@ -1,531 +1,598 @@
-# 🛡️ Phishing URL Detection using Neural Networks
+# 🛡️ PhishShield AI
+
+### Multimodal AI-Based Phishing Detection System
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Domain-Cybersecurity-red?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/AI-Neural%20Networks-blueviolet?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/ML-Phishing%20Detection-blue?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Course-Computer%20Security-success?style=for-the-badge" />
+  <b>Detect phishing using URL intelligence + visual webpage analysis.</b>
 </p>
 
 <p align="center">
-  <b>🔐 Detecting Deception with Artificial Intelligence</b>
+  <img src="https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/TensorFlow-Keras-orange?style=for-the-badge&logo=tensorflow&logoColor=white" />
+  <img src="https://img.shields.io/badge/FastAPI-Backend-009688?style=for-the-badge&logo=fastapi&logoColor=white" />
+  <img src="https://img.shields.io/badge/Gradio-Demo-FF7C00?style=for-the-badge&logo=gradio&logoColor=white" />
 </p>
 
 <p align="center">
-  A research-oriented project exploring intelligent approaches for detecting phishing URLs using Neural Networks and modern Deep Learning techniques.
+  <img src="https://img.shields.io/badge/Deep%20Learning-CNN%20%7C%20BiLSTM-purple?style=flat-square" />
+  <img src="https://img.shields.io/badge/Detection-Multimodal-red?style=flat-square" />
+  <img src="https://img.shields.io/badge/Project-Computer%20Security-black?style=flat-square" />
 </p>
 
 ---
 
-## 🌐 Overview
+## 🚀 Overview
 
-**Phishing URL Detection using Neural Networks** is a cybersecurity and machine learning project focused on the detection of **phishing and malicious URLs** using intelligent learning-based approaches.
+**PhishShield AI** is a multimodal phishing detection system designed to analyze suspicious websites using two complementary sources of information:
 
-Phishing attacks use deceptive websites that imitate legitimate online services to trick users into revealing sensitive information such as passwords, banking credentials, and personal data.
+* 🔗 **URL-based intelligence**
+* 🖼️ **Website screenshot / visual intelligence**
 
-Traditional blacklist-based systems mainly depend on previously identified malicious URLs. This creates a major challenge when attackers generate **new or previously unseen phishing URLs**.
+Instead of depending on a single prediction source, the system combines multiple deep-learning outputs through a **Fusion Engine** to produce a final phishing probability and classification.
 
-Our project explores how **Machine Learning, Deep Learning, Neural Networks, and Transformer-based models** can provide more intelligent and adaptive phishing detection.
-
-> **The goal is not simply to recognize known threats — it is to explore how AI can learn the patterns behind malicious URLs.**
-
-The motivation and problem statement are based on the project presentation, which highlights the limitations of traditional blacklist methods against newly emerging phishing websites.
+The complete system is exposed through a **FastAPI backend** and demonstrated through a modern **Gradio web interface**.
 
 ---
 
-# 🎯 Objectives
+## 🎯 Project Objective
 
-The major objectives of this project are:
+The primary objective of PhishShield AI is to build an intelligent security system capable of identifying potentially malicious websites by learning both:
 
-* 🔎 Understand the characteristics of phishing URLs
-* 🤖 Explore Neural Network–based phishing detection
-* 🧠 Study modern Deep Learning and Transformer approaches
-* 📚 Analyze state-of-the-art research in phishing detection
-* 📊 Investigate commonly used phishing URL datasets
-* 🔬 Identify limitations and research gaps in existing approaches
-* 🛡️ Explore better detection of previously unseen and zero-day phishing URLs
-* 🚀 Propose future improvements for more robust detection systems
-* 💡 Investigate the potential of Explainable AI for transparent predictions
+> **What the URL looks like**
+
+and
+
+> **What the webpage visually looks like**
+
+This multimodal approach is designed to provide a broader view of phishing characteristics than relying on URL analysis alone.
 
 ---
 
-# 🚨 Why Phishing Detection Matters
-
-A phishing website can be visually similar to a legitimate website while secretly attempting to steal user information.
-
-### The traditional approach
+## 🧠 System Architecture
 
 ```text
-User enters URL
-       │
-       ▼
-Blacklist Lookup
-       │
-   ┌───┴────┐
-   │        │
-Known     Unknown
-Threat     URL
-   │        │
-   ▼        ▼
-Block     May Pass
-```
-
-The major weakness is that **new phishing URLs may not yet exist in a blacklist**.
-
-### The AI-based vision
-
-```text
-                 URL
-                  │
-                  ▼
-          Feature / Pattern Analysis
-                  │
-                  ▼
-       ┌─────────────────────────┐
-       │ Neural Network /         │
-       │ Transformer-based Model  │
-       └────────────┬────────────┘
-                    │
-                    ▼
-             Classification
-              ┌─────┴─────┐
-              ▼           ▼
-          Legitimate    Phishing
-             🟢           🔴
-```
-
----
-
-# 🧠 State of the Art
-
-Modern phishing detection research increasingly uses **Machine Learning and Deep Learning** techniques.
-
-Our study focuses on several important research directions, including:
-
-| Approach           | Main Idea                                       |
-| ------------------ | ----------------------------------------------- |
-| 🧠 Neural Networks | Learn complex URL patterns                      |
-| 🔲 CNN             | Learn local character/URL patterns              |
-| 🔄 Bi-LSTM         | Capture sequential URL dependencies             |
-| 🤖 BERT            | Context-aware Transformer representation        |
-| ⚡ DistilBERT       | More lightweight Transformer architecture       |
-| 🔀 Hybrid Models   | Combine multiple deep learning approaches       |
-| 🌐 Multimodal AI   | Combine URL with webpage/contextual information |
-
-The project presentation identifies CNN, Bi-LSTM, BERT/DistilBERT, hybrid deep learning, and multimodal detection as important directions in recent phishing-detection research.
-
----
-
-# 📊 Research Data Sources
-
-The research discussed in this project considers multiple sources of legitimate and phishing URLs:
-
-### 🌐 Alexa
-
-Used as a source of legitimate/popular website URLs.
-
-### 🚨 PhishTank
-
-A source of reported phishing URLs.
-
-### 🔍 OpenPhish
-
-A source of phishing URL intelligence.
-
-### 🛡️ EasyDMARC
-
-A cybersecurity platform and source of real-world phishing-related data.
-
-The presentation identifies **Alexa, PhishTank, OpenPhish, and EasyDMARC** among the datasets/data sources used in the studied research.
-
----
-
-# 📈 Research Findings
-
-The state-of-the-art research examined in our project reports:
-
-| Research Aspect       | Finding                                |
-| --------------------- | -------------------------------------- |
-| 🤖 Model              | BERT + Neural Network                  |
-| 🌐 Data Sources       | Alexa, PhishTank, OpenPhish, EasyDMARC |
-| 🎯 Reported Accuracy  | ~97%                                   |
-| 🏭 Production Testing | ✅ Yes                                  |
-| 📊 Confidence Score   | ✅ Yes                                  |
-
-The presentation reports approximately **97% accuracy**, successful real-world/production testing, and the use of a confidence score with a probabilistic neural-network approach.
-
-> **Important:** These figures describe the research reviewed in this project and should not be interpreted as our own experimental benchmark unless corresponding implementation/results are added to this repository.
-
----
-
-# 🔬 Research Gap Analysis
-
-Despite significant progress, current phishing detection systems still face several challenges.
-
-## 1. 🕵️ Unseen Phishing URLs
-
-Models may struggle when attackers introduce URL patterns that were not represented in the training data.
-
-## 2. 📅 Outdated or Imbalanced Data
-
-Phishing attacks continuously evolve, while datasets may not always reflect the latest attack patterns.
-
-## 3. 🌐 Limited Context
-
-URL-only analysis may not fully capture information contained within the actual webpage.
-
-## 4. ⚙️ Computational Complexity
-
-Large and sophisticated deep learning models can require considerable computational resources.
-
-## 5. 🔍 Limited Interpretability
-
-A model may identify a URL as malicious without clearly explaining **why** it made that decision.
-
-These five issues are explicitly identified in the project's research-gap analysis.
-
----
-
-# 🚀 Proposed Research Improvements
-
-Our project identifies several promising directions for improving future phishing detection systems.
-
-## 🌐 01 — Multimodal AI
-
-Instead of relying only on the URL, a future system could analyze multiple sources of information:
-
-```text
-                    Website
-                       │
-        ┌──────────────┼──────────────┐
-        ▼              ▼              ▼
-       URL            HTML          Visual
-        │              │              │
-        ▼              ▼              ▼
-     Domain         Structure      Screenshot
-     Pattern        Content        Logo
-                                  Login Page
-        │              │              │
-        └──────────────┼──────────────┘
-                       ▼
-                Multimodal Model
-                       │
-                       ▼
-              Phishing / Legitimate
-```
-
-Potential inputs include:
-
-* URL
-* HTML
-* Images
-* Logo
-* Screenshot
-* Login-page design
-* SSL certificate
-* JavaScript behavior
-
-This direction is proposed in the project's improvement analysis.
-
----
-
-# 🔄 02 — Continual Learning
-
-Attackers constantly develop new phishing techniques.
-
-A future system could continuously incorporate newly observed data.
-
-```text
-       New Phishing Attack
-                │
-                ▼
-          New Training Data
-                │
-                ▼
-         Continual Learning
-                │
-                ▼
-          Updated Model
-                │
-                ▼
-       Better Threat Detection
-                │
-                └───────────────↺
-```
-
-This could help models adapt to evolving threats instead of remaining dependent on an old training distribution.
-
-The presentation proposes continual learning for more adaptive zero-day phishing detection.
-
----
-
-# 🧠 03 — Explainable AI (XAI)
-
-An effective security system should ideally provide more than a binary prediction.
-
-Instead of:
-
-```text
-URL → PHISHING ❌
-```
-
-a future system could provide:
-
-```text
-URL → PHISHING ❌
-
-Reasons:
-├── Suspicious URL structure
-├── Abnormal domain characteristics
-├── Unusual redirection pattern
-└── Suspicious webpage behavior
-```
-
-Explainable AI can help security professionals understand and investigate model decisions.
-
----
-
-# 🌍 04 — Multilingual & Unicode URL Detection
-
-Modern phishing attacks can exploit:
-
-* Unicode characters
-* Internationalized domain names
-* Visually similar characters
-* Multilingual URLs
-
-Future research should therefore evaluate model robustness across different languages and Unicode-based URL manipulations.
-
----
-
-# 🕸️ 05 — Graph Neural Networks
-
-A URL does not exist in isolation.
-
-Future systems could model relationships between:
-
-```text
-             Domain
-            /      \
-           /        \
-       IP Address   DNS
-           \        /
-            \      /
-          Certificate
-                │
-                ▼
-        Related Domains
-```
-
-**Graph Neural Networks (GNNs)** could potentially help analyze relationships among domains, IP addresses, DNS information, certificates, and related infrastructure.
-
----
-
-# 🛡️ 06 — Adversarial Robustness
-
-Attackers can deliberately modify URLs to evade machine learning systems.
-
-Future work can investigate **adversarial training** to make phishing detection models more robust against manipulated URLs.
-
-The presentation specifically proposes multilingual support, GNN-based domain/IP relationship analysis, and adversarial training as future research directions.
-
----
-
-# 🏗️ Conceptual System Architecture
-
-```text
-                         ┌──────────────────┐
-                         │     Input URL     │
-                         └────────┬─────────┘
-                                  │
-                                  ▼
-                    ┌─────────────────────────┐
-                    │ URL / Feature Analysis  │
-                    └────────────┬────────────┘
-                                 │
-                  ┌──────────────┴──────────────┐
-                  │                             │
-                  ▼                             ▼
-          ┌───────────────┐             ┌───────────────┐
-          │ URL Features  │             │ Web Context   │
-          └───────┬───────┘             └───────┬───────┘
-                  │                             │
-                  └──────────────┬──────────────┘
-                                 │
-                                 ▼
-                     ┌──────────────────────┐
-                     │ Neural Network /     │
-                     │ Transformer Model    │
-                     └──────────┬───────────┘
-                                │
-                                ▼
-                      ┌────────────────────┐
-                      │   Classification   │
-                      └─────────┬──────────┘
-                                │
-                    ┌───────────┴───────────┐
-                    ▼                       ▼
-              🟢 LEGITIMATE             🔴 PHISHING
-```
-
-> This architecture represents the **research direction and proposed system concept**. It should not be interpreted as a claim that every component has already been implemented.
-
----
-
-# 📌 Research Roadmap
-
-```text
-Understanding Phishing
-        │
-        ▼
-State-of-the-Art Study
-        │
-        ▼
-Neural Network Approaches
-        │
-        ▼
-Transformer-based Detection
-        │
-        ▼
-Research Gap Identification
-        │
-        ├───────────────┐
-        ▼               ▼
-Multimodal AI       Continual Learning
-        │               │
-        ├───────────────┤
-        ▼
-Explainable AI
-        │
-        ▼
-Zero-Day Detection
-        │
-        ▼
-Robust & Adaptive
-Phishing Detection
+                    ┌──────────────────────┐
+                    │      Website URL     │
+                    └──────────┬───────────┘
+                               │
+                     ┌─────────┴─────────┐
+                     │                   │
+                     ▼                   ▼
+              ┌─────────────┐     ┌─────────────┐
+              │   URL CNN   │     │ URL BiLSTM   │
+              └──────┬──────┘     └──────┬──────┘
+                     │                   │
+                     └─────────┬─────────┘
+                               │
+                         URL Intelligence
+                               │
+                               ▼
+                    ┌────────────────────┐
+                    │   URL Probability  │
+                    └─────────┬──────────┘
+                              │
+                              │
+      ┌───────────────────────┘
+      │
+      │
+      ▼
+┌──────────────────────┐
+│ Website Screenshot   │
+└──────────┬───────────┘
+           │
+           ▼
+   ┌─────────────────┐
+   │ Screenshot CNN  │
+   └────────┬────────┘
+            │
+            ▼
+   Visual Probability
+            │
+            │
+            └───────────────┐
+                            ▼
+                  ┌──────────────────┐
+                  │  FUSION ENGINE   │
+                  │                  │
+                  │ URL: 60%         │
+                  │ Visual: 40%      │
+                  └────────┬─────────┘
+                           │
+                           ▼
+                 ┌────────────────────┐
+                 │ Final Probability   │
+                 │ + Classification    │
+                 └────────────────────┘
 ```
 
 ---
 
-# ⭐ Key Contributions of the Study
+## ✨ Key Features
 
-### 🔐 Cybersecurity Focus
+### 🔗 URL Intelligence
 
-Addresses one of the most important social-engineering-based cyber threats.
+The URL branch uses two deep-learning architectures:
 
-### 🤖 AI-Based Detection
+* **1D CNN**
+* **BiLSTM**
 
-Explores Neural Networks and modern Deep Learning approaches.
-
-### 🧠 Transformer Research
-
-Examines BERT and related Transformer-based approaches.
-
-### 📊 Multi-Source Data
-
-Considers diverse phishing and legitimate URL sources.
-
-### 🔎 Research Gap Identification
-
-Highlights limitations in current phishing detection systems.
-
-### 🚀 Future-Oriented
-
-Proposes multimodal learning, continual learning, XAI, GNNs, and adversarial training.
+These models analyze sequential patterns and structural characteristics present in URLs.
 
 ---
 
-# 🧪 Project Scope
+### 🖼️ Visual Intelligence
 
-This project primarily focuses on **research, analysis, and proposed improvements** in Neural Network–based phishing URL detection.
+A dedicated **Screenshot CNN** analyzes the visual representation of a webpage.
 
-The repository can be extended with:
+The visual branch can capture webpage-level patterns that may not be obvious from the URL alone.
+
+---
+
+### ⚡ Multimodal Fusion
+
+The project combines:
 
 ```text
-📁 datasets/
-📁 notebooks/
-📁 models/
-📁 experiments/
-📁 results/
-📁 presentation/
-📁 research/
+URL Probability
+       +
+Visual Probability
+       ↓
+Fusion Engine
+       ↓
+Final Prediction
+```
+
+Current fusion configuration:
+
+| Component           | Weight |
+| ------------------- | -----: |
+| URL Intelligence    |    60% |
+| Visual Intelligence |    40% |
+
+The final decision uses a tuned classification threshold of **0.30**.
+
+---
+
+## 📊 Evaluation
+
+On the verified URL + visual evaluation subset used during development:
+
+| Metric             |     Result |
+| ------------------ | ---------: |
+| Fusion Accuracy    | **84.09%** |
+| ROC-AUC            | **80.83%** |
+| Evaluation Samples |     **44** |
+| Fusion Threshold   |   **0.30** |
+
+> **Note:** These measurements come from the verified evaluation subset used for the multimodal fusion experiment, not from the entire dataset. They should therefore be interpreted as experimental evaluation results rather than a universal real-world accuracy guarantee.
+
+---
+
+## 🔬 Why Multimodal Detection?
+
+Traditional URL-only detection mainly focuses on the structure of the URL.
+
+However, phishing pages can sometimes use:
+
+* Familiar-looking page layouts
+* Brand-like visual elements
+* Login interfaces
+* Suspicious visual patterns
+* Deceptive webpage designs
+
+PhishShield AI therefore combines **URL-level** and **visual-level** signals.
+
+```text
+Traditional approach
+
+URL ───────────────► Prediction
+
+
+PhishShield AI
+
+URL ────────────────┐
+                    ├──► Fusion ───► Prediction
+Screenshot ─────────┘
+```
+
+---
+
+## 🧩 Technology Stack
+
+| Layer                   | Technology         |
+| ----------------------- | ------------------ |
+| Programming Language    | Python             |
+| Deep Learning           | TensorFlow / Keras |
+| URL Model 1             | CNN                |
+| URL Model 2             | BiLSTM             |
+| Visual Model            | CNN                |
+| Backend                 | FastAPI            |
+| Frontend / Demo         | Gradio             |
+| Image Processing        | Pillow             |
+| Development Environment | Google Colab       |
+| Storage / Backup        | Google Drive       |
+
+---
+
+## 🏗️ Project Structure
+
+```text
+PhishShield_AI/
+│
+├── main.py
+│
+├── models/
+│   ├── phishshield_url_cnn.keras
+│   ├── phishshield_url_bilstm.keras
+│   ├── phishshield_screenshot_cnn_improved.keras
+│   │
+│   └── phishshield_html_nn.keras
+│
+├── preprocessing/
+│   ├── phishshield_url_tokenizer.pkl
+│   ├── phishshield_html_scaler.pkl
+│   ├── phishshield_html_features.pkl
+│   └── phishshield_html_branch_info.pkl
+│
+├── config/
+│   ├── phishshield_project_config.json
+│   └── phishshield_fusion_config.json
+│
+├── demo/
+│   └── gradio_demo
+│
 └── README.md
 ```
 
-As implementation and experimental results are added, corresponding sections can be updated with reproducible details and benchmark results.
-
 ---
 
+## 🔌 API Endpoints
 
----
+The FastAPI backend exposes the following endpoints:
 
-# 🎓 Academic Information
+### Health Check
 
-**Course:** Computer Security
-**Section:** A
-**Project:** Phishing URL Detection using Neural Networks
-**Instructor:** Md. Taky Shaharair
+```http
+GET /health
+```
 
----
+Example response:
 
-# 📚 References
-
-The project presentation includes research references from:
-
-* Journal of Information Security and Informatics
-* Springer
-* IEEE Xplore
-
-The presentation provides the corresponding research links in its reference section.
-
----
-
-# 🔮 Future Vision
-
-The long-term vision of this research is to move from static phishing detection toward an **adaptive, multimodal, explainable, and robust cybersecurity intelligence system**.
-
-```text
-                 ┌─────────────────────┐
-                 │   Current Problem    │
-                 └──────────┬──────────┘
-                            ▼
-                 Static Phishing Detection
-                            │
-                            ▼
-                 ┌─────────────────────┐
-                 │   Future Research   │
-                 └──────────┬──────────┘
-                            │
-          ┌─────────────────┼─────────────────┐
-          ▼                 ▼                 ▼
-     Multimodal AI    Continual Learning    XAI
-          │                 │                 │
-          └─────────────────┼─────────────────┘
-                            ▼
-                       GNN + Robustness
-                            │
-                            ▼
-                🛡️ Adaptive Zero-Day
-                   Phishing Detection
+```json
+{
+  "status": "healthy",
+  "url_cnn": true,
+  "url_bilstm": true,
+  "screenshot_cnn": true
+}
 ```
 
 ---
 
-# 💭 Final Takeaway
+### URL Prediction
 
-> **The future of phishing detection is not just identifying known malicious URLs — it is understanding patterns, context, relationships, and evolving attacker behavior.**
+```http
+POST /predict/url
+```
 
-By combining **Neural Networks, Transformer architectures, Multimodal AI, Continual Learning, Explainable AI, Graph Neural Networks, and Adversarial Training**, future phishing detection systems can become more **adaptive, interpretable, robust, and effective against emerging threats**.
+Used for URL-based phishing analysis.
+
+---
+
+### Multimodal Prediction
+
+```http
+POST /predict/multimodal
+```
+
+Accepts:
+
+* Website URL
+* Website screenshot
+
+and returns the multimodal prediction.
+
+---
+
+## 🖥️ Demo Interface
+
+The final demonstration interface provides:
+
+* 🔗 Website URL input
+* 🖼️ Screenshot upload
+* 🚀 One-click analysis
+* 🎯 Final prediction
+* 📊 Fusion probability
+* 🔗 URL probability
+* 🖼️ Visual probability
+* ⚡ System status
+
+Example output:
+
+```text
+FINAL PREDICTION
+🛡️ LEGITIMATE
+
+FUSION PROBABILITY
+28.77%
+
+URL PROBABILITY
+0.09%
+
+VISUAL PROBABILITY
+71.78%
+```
+
+---
+
+## ⚙️ Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/YOUR_USERNAME/PhishShield-AI.git
+cd PhishShield-AI
+```
+
+Install dependencies:
+
+```bash
+pip install fastapi uvicorn python-multipart pillow tensorflow gradio requests
+```
+
+---
+
+## ▶️ Running the Backend
+
+Start the FastAPI server:
+
+```bash
+uvicorn main:app --host 0.0.0.0 --port 8000
+```
+
+Then open:
+
+```text
+http://127.0.0.1:8000
+```
+
+Health endpoint:
+
+```text
+http://127.0.0.1:8000/health
+```
+
+---
+
+## 🎨 Running the Demo
+
+The project includes a Gradio-based demonstration interface.
+
+The demo workflow is:
+
+```text
+Enter URL
+     ↓
+Upload Screenshot
+     ↓
+Analyze Website
+     ↓
+URL CNN + BiLSTM
+     ↓
+Screenshot CNN
+     ↓
+Fusion Engine
+     ↓
+Final Prediction
+```
+
+---
+
+## 🔐 HTML Analysis Branch
+
+An HTML neural-network branch was also developed as part of the project.
+
+However, during the verified integration stage, exact URL-to-HTML alignment was unavailable for the available samples.
+
+Therefore:
+
+> **The HTML branch is preserved in the project package but is not included in the active final URL + Visual fusion pipeline.**
+
+This design choice avoids introducing unreliable data alignment into the final prediction system.
+
+---
+
+## 💡 Project Novelty
+
+The main contribution of PhishShield AI is its **multimodal phishing detection architecture**.
+
+Instead of relying on only one signal, the system combines:
+
+```text
+URL Deep Learning
+       +
+Visual Deep Learning
+       ↓
+Multimodal Fusion
+       ↓
+Final Phishing Assessment
+```
+
+The system also uses a development-time threshold analysis to select the final fusion decision threshold.
+
+---
+
+## 🧪 Development Workflow
+
+```text
+Dataset Collection
+        ↓
+Data Cleaning
+        ↓
+Preprocessing
+        ↓
+URL Model Development
+        ↓
+CNN + BiLSTM
+        ↓
+Screenshot Model Development
+        ↓
+CNN
+        ↓
+Model Evaluation
+        ↓
+Fusion Experiments
+        ↓
+Threshold Analysis
+        ↓
+FastAPI Backend
+        ↓
+Gradio Interface
+        ↓
+Final Demonstration
+```
+
+---
+
+## 📦 Model Files
+
+The project package contains the trained model artifacts used by the system:
+
+```text
+phishshield_url_cnn.keras
+phishshield_url_bilstm.keras
+phishshield_screenshot_cnn_improved.keras
+phishshield_html_nn.keras
+```
+
+Supporting preprocessing/configuration files include:
+
+```text
+phishshield_url_tokenizer.pkl
+phishshield_html_scaler.pkl
+phishshield_html_features.pkl
+phishshield_html_branch_info.pkl
+phishshield_project_config.json
+phishshield_fusion_config.json
+```
+
+---
+
+## 🛡️ Security & Privacy
+
+PhishShield AI is intended as an academic/research project for phishing detection.
+
+It should **not** be treated as a replacement for:
+
+* Browser security systems
+* Enterprise security products
+* Threat intelligence platforms
+* Professional security analysis
+
+Predictions are model outputs and may contain false positives or false negatives.
+
+---
+
+## ⚠️ Important
+
+Do **not** commit sensitive files such as:
+
+```text
+.env
+API keys
+passwords
+private tokens
+credentials
+personal datasets
+private Google Drive files
+```
+
+For large model files, consider using **Git LFS** or an external artifact-storage solution rather than committing oversized binaries directly to Git. GitHub recommends Git LFS for large files.
+
+---
+
+## 📸 Demo Screenshots
+
+Add your project screenshots here:
+
+```markdown
+![PhishShield AI Demo](docs/images/demo.png)
+```
+
+Recommended screenshots:
+
+1. 🖥️ Final Gradio interface
+2. 🔍 URL analysis result
+3. 🎯 Multimodal prediction result
+4. 📊 Fusion evaluation
+5. 🧠 System architecture
+
+GitHub supports relative image paths, so keeping screenshots inside the repository makes the README portable when the repository is cloned.
+
+---
+
+## 📚 Research Context
+
+PhishShield AI was developed as an academic Computer Security / Machine Learning project focusing on:
+
+* Phishing detection
+* Deep learning
+* URL classification
+* Computer vision
+* Multimodal learning
+* Model fusion
+* Cybersecurity automation
+
+---
+
+## 👨‍💻 Project Team
+
+**PhishShield AI**
+
+Academic Project
+Computer Security / Machine Learning
+
+> Add your team members, university, department, course code, and supervisor information here.
+
+---
+
+## 📌 Future Improvements
+
+Potential future extensions include:
+
+* 🌐 Live webpage HTML analysis
+* 🔍 DOM-based phishing detection
+* 🔗 External threat-intelligence integration
+* 🧠 Transformer-based URL modeling
+* 🖼️ Improved visual feature extraction
+* 🔄 Dynamic multimodal calibration
+* 📱 Mobile-friendly interface
+* 🚀 Cloud deployment
+* 📈 Larger-scale evaluation
+* 🛡️ Real-time browser integration
+
+---
+
+## ⭐ Acknowledgement
+
+This project was developed for academic and educational purposes to explore the application of deep learning and multimodal analysis in cybersecurity.
+
+---
+
+## 📄 License
+
+This project is intended primarily for academic and educational use.
+
+If you plan to distribute the project as open-source software, add an appropriate license such as MIT, Apache-2.0, or another license that matches your intended usage.
 
 ---
 
 <p align="center">
-  <b>🛡️ Detect. Understand. Adapt. Defend.</b>
+
+### 🛡️ PhishShield AI
+
+**URL Intelligence × Visual Intelligence × Fusion**
+
+*Building smarter approaches to phishing detection.*
+
 </p>
-
-<p align="center">
-  <i>Phishing URL Detection using Neural Networks</i>
-</p>
-
-
-
